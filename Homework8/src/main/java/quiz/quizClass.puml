@@ -1,0 +1,39 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class Document{
+    + addCharacter() : void
+    + editCharacter() : void
+    + saveToFile() : void
+    + loadFromFile() : void
+}
+class CharacterPropertiesFactory{
+    - flyweights : map<String, CharacterProperty>
+    + setAndRetrieveFlyweightCharacterProperties() : CharacterProperties
+    + sizeOfMap() : int
+}
+class CharacterProperties{
+- font : String
+- color : String
+- size : int
++ getFont() : String
++ getColor() : String
++ getSize() : String
+}
+
+class Character{
+- character: char
+- characterProperty : CharacterProperties
+
++ setCharacter() : void
++ setCharacterProperties() : void
++ getCharacter() : char
+}
+
+Character *-- CharacterProperties
+CharacterPropertiesFactory ..> CharacterProperties : uses
+Document -- Character
+Document o-- CharacterPropertiesFactory
+@enduml

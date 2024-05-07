@@ -1,0 +1,107 @@
+@startuml
+'https://plantuml.com/object-diagram
+
+
+
+
+
+'Character o-- CharacterProperties
+'CharacterProperties --> CharactersPropertyFactory
+'Document *-- CharactersPropertyFactory
+object TextEditor
+
+object "<u>ArialBlack16:CharacterProperty</u>" as ab16{
+    font = "arial"
+    color = "Black"
+    size = "16"
+}
+object "<u>ArialBlack14:CharacterProperty</u>" as ab14{
+    font = "Arial"
+    color = "Black"
+    size = "14"
+}
+object "<u>VerdanaBlue18:CharacterProperty</u>" as vbl18{
+    font = "Verdana"
+    color = "Blue"
+    size = "18"
+}
+object "<u>VerdanaRed12:CharacterProperty</u>" as vr12{
+    font = "Verdana"
+    color = "Red"
+    size = "12"
+}
+object "<u>CalibriBlue99:CharacterProperty</u>" as cbl99{
+    font = "Calibri"
+    color = "Blue"
+    size = "99"
+}
+
+
+
+object "<u>propertiesFactory:CharacterPropertiesFactory</u>" as chp{
+    map flyweights <String, CharacterProperty>
+}
+    chp --> ab16 : uses
+    chp --> ab14 : uses
+    chp --> vbl18 : uses
+    chp --> vr12 : uses
+    chp --> cbl99 :uses
+
+object "<u>newDocument:Document</u>" as d{
+
+}
+d *-- chp
+object "<u>'H':Character</u>" as h{
+character = 'H'
+}
+object "<u>'e':Character</u>" as e {
+character = 'e'
+}
+object "<u>'l':Character</u>" as l {
+character = 'l'
+}
+object "<u>'l':Character</u>" as l2 {
+character = 'l'
+}
+object "<u>'o':Character</u>" as o {
+character = 'o'
+}
+object "<u>'W':Character</u>" as w {
+character = 'w'
+}
+object "<u>'o':Character</u>" as o2 {
+character = 'o'
+}
+object "<u>'r':Character</u>" as r {
+character = 'r'
+}
+object "<u>'l':Character</u>" as l3 {
+character = 'l'
+}
+object "<u>'d':Character</u>" as d2 {
+character = 'd'
+}
+d -- h
+d -- e
+d -- l
+d -- l2
+d -- o
+d -- w
+d -- o2
+d -- r
+d -- l3
+d -- d2
+
+h *-- cbl99
+e *-- ab14
+l *-- ab14
+l2 *-- ab14
+o *-- ab14
+w *-- cbl99
+o2 *-- ab14
+r *-- ab14
+l3 *-- ab14
+d2 *-- ab14
+
+TextEditor --> d : creates
+@enduml
